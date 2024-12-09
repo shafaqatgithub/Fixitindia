@@ -1,79 +1,48 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const CategoryFilter = () => {
-  
-  const [categories] = useState([
+  const categories = [
     'Carpenter',
-    'Plumbing',
-    'Outdoor Litter Cleanup',
-    'Appliance Repair Services',
-    'POP Services',
+    'Plumber',
     'CCTV Services',
-  ]);
-
-  const renderCategory = ({ item }) => (
-    <View style={styles.categoryItem}>
-      <Text style={styles.categoryText}>{item}</Text>
-    </View>
-  );
+    'Electrician',
+    'Gardener',
+  ];
 
   return (
-    <View style={styles.container}>
-     
-      <Text style={styles.categoriesHeading}>Categories</Text>
-
-      <FlatList
-        data={categories}
-        renderItem={renderCategory}
-        keyExtractor={(item) => item}
-      />
-      </View>
+    <View style={styles.filterContainer}>
+      <Text style={styles.filterHeading}>Select a Category</Text>
+      {categories.map((category, index) => (
+        <TouchableOpacity key={index} style={styles.categoryButton}>
+          <Text style={styles.categoryText}>{category}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
+  filterContainer: {
+    marginVertical: 16,
     padding: 8,
-    marginVertical: 8,
-    borderRadius: 4,
   },
-  categoriesHeading: {
-    fontSize: 18,
-    marginVertical: 12,
+  filterHeading: {
+    fontSize: 16,
     fontWeight: 'bold',
+    marginBottom: 8,
   },
-  categoryItem: {
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
+  categoryButton: {
+    padding: 10,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 5,
+    marginVertical: 4,
   },
   categoryText: {
-    fontSize: 16,
-  },
-  viewMoreLink: {
-    marginTop: 16,
-    alignItems: 'center',
-  },
-  viewMoreText: {
-    fontSize: 16,
-    color: 'orange',
-    textDecorationLine: 'underline', 
+    fontSize: 14,
   },
 });
 
 export default CategoryFilter;
+ 

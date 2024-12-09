@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import Clickme from '@/components/Clickme'
 import { Link } from 'expo-router'
 import { StyleSheet } from 'react-native'
+import axios from "axios"
+
 
 const Signup = () => {
 
@@ -13,6 +15,15 @@ const Signup = () => {
 
  
   const handleSignup = ()=>{
+    const userData = {
+      name: name,
+      email,
+      phone,
+      password,
+
+    };
+    axios.post("http://192.168.0.148:5001/register", userData).then(res=> console.log(res.data))
+    .catch(e=>console.log(e));
 
   }
   return (
